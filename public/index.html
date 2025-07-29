@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Chatify</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="header">
+            <div class="header-left">
+                <i class="fas fa-comments chat-logo"></i>
+                <h1>Chatify</h1>
+            </div>
+            <div class="header-right">
+                <div class="profile-icon" id="profile-icon">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </div>
+        </div>
+        <div class="username-section" id="username-section">
+            <div class="username-card">
+                <h2>Welcome to Chatify!</h2>
+                <p>Please choose a unique username and a color for your messages.</p>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username-input" placeholder="Enter your username">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-palette"></i>
+                    <input type="color" id="color-input" value="#007bff">
+                    <label for="color-input" class="color-label">Choose your color</label>
+                </div>
+                <button id="set-username-btn">Join Chat <i class="fas fa-sign-in-alt"></i></button>
+                <p id="username-error" class="error-message"></p>
+            </div>
+        </div>
+
+        <div class="chat-main" id="chat-main" style="display: none;">
+            <div class="chat-area">
+                <div class="messages" id="messages">
+                    </div>
+                <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                    <span id="typing-message"></span>
+                    <span class="dot-typing"></span>
+                </div>
+                <div class="input-area">
+                    <div id="reply-preview" class="reply-preview" style="display: none;">
+                        <div class="reply-text">
+                            Replying to <strong><span id="reply-to-user"></span></strong>: "<span id="reply-to-message"></span>"
+                        </div>
+                        <button id="cancel-reply" class="cancel-reply-btn"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="emoji-container" id="emoji-container">
+                        </div>
+                    <div class="mention-suggestions" id="mention-suggestions" style="display: none;">
+                        </div>
+                    <form id="form">
+                        <input id="input" autocomplete="off" placeholder="Type your message..." />
+                        <button type="button" id="emoji-picker-btn"><i class="fas fa-smile"></i></button>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-modal-btn">&times;</span>
+            <h2>My Profile</h2>
+            <div class="input-group">
+                <label for="modal-username-input">Username:</label>
+                <input type="text" id="modal-username-input" readonly>
+            </div>
+            <div class="input-group">
+                <label for="modal-color-input">My Color:</label>
+                <input type="color" id="modal-color-input">
+            </div>
+            <button id="save-profile-btn">Save Changes</button>
+            <p id="profile-error" class="error-message"></p>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
