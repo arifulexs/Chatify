@@ -1,4 +1,11 @@
+// --- START: Added/Modified for Deployment ---
+// IMPORTANT: If your frontend (index.html) is served by Render (which serves your public folder),
+// then 'const socket = io();' is usually sufficient as it defaults to the same origin.
+// However, if you plan to host your frontend on a DIFFERENT service (like GitHub Pages for static files),
+// you MUST uncomment and replace the URL below with your deployed Render backend URL.
+// Example: const socket = io("https://your-backend-app-name.onrender.com");
 const socket = io();
+// --- END: Added/Modified for Deployment ---
 
 // --- UI Element References ---
 const usernameSection = document.getElementById('username-section');

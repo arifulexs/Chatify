@@ -10,9 +10,17 @@ const io = socketIo(server, {
         maxDisconnectionDuration: 2 * 60 * 1000, // 2 minutes
         skipMiddlewares: true,
     },
+    // --- START: Added/Modified for Deployment ---
+    cors: {
+        origin: "*", // IMPORTANT: For production, change this to your actual frontend domain(s), e.g., "https://your-frontend-domain.com"
+        methods: ["GET", "POST"]
+    }
+    // --- END: Added/Modified for Deployment ---
 });
 
-const PORT = process.env.PORT || 3000;
+// --- START: Added/Modified for Deployment ---
+const PORT = process.env.PORT || 3000; // Use environment variable 'PORT' or default to 3000
+// --- END: Added/Modified for Deployment ---
 
 // Store active users with their socket ID, username, and color
 const activeUsers = new Map(); // socket.id -> { username, color }
@@ -134,6 +142,8 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(PORT, () => {
+// --- START: Added/Modified for Deployment ---
+server.listen(PORT, () => { // Changed from app.listen to server.listen to correctly use the http server
+// --- END: Added/Modified for Deployment ---
     console.log(`Server running on port ${PORT}`);
 });
